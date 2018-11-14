@@ -12,17 +12,12 @@ output:
   pdf_document: default
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
 
 
 # Mapping Digital Inequality in England
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, out.width="100%", paged.print=FALSE}
-knitr::include_graphics('out_uk_internet_access_cropped2.png')
-#![](out_eng_internet_access_edited.png)
-```
+<img src="out_uk_internet_access_cropped2.png" width="100%" />
 <!-- <center> -->
 <!-- ![img](out_uk_internet_access_cropped2.png) -->
 <!-- </center> -->
@@ -36,7 +31,8 @@ The resulting OA-level dataset can be aggregated to different regional scales to
 ## Workflow
 ### Data Wrangling
 
-```{r data, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+```r
 library(sf)
 library(maptools)
 library(tmap)
@@ -53,14 +49,13 @@ pop_data = read_csv('data/census_pop_2011_all.csv')
 oa_msoa = read_csv('data/ref_OA_to_MSOA.csv')
 oa_region = read_csv('data/ref_OA_to_region.csv')
 msoa_cities <- read_csv('data/ref_MSOA_to_cities.csv')
-
 ```
 
 The first step aims to build a flexible underlying dataset which can be summarised and mapped at our scale of choice. In R, TidyVerse helps us achieve this in just a few steps:
 
 
-```{r data-wrangling, message=FALSE, warning=FALSE}
 
+```r
 # join data to both reference tables for MSOA, region and cities, as well as population data 
 data <- data %>% 
   left_join(oa_msoa, by=c('oa11'='OA11CD')) %>%
@@ -73,19 +68,84 @@ data <- select(data, -c(phhreadr, pmobmail2, pu_accmob))
 
 # check OA hasn't been duped at all by the left joins
 sprintf('number of unique OAs: %s', n_distinct(data$oa11))
+```
 
+```
+## [1] "number of unique OAs: 227759"
 ```
 <br>
 <div class="verysmall">
-```{r show-data, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
-
-kable(data[1:3,], caption = 'The first few rows of the joined up dataset') %>%
-  kable_styling() %>%
-  scroll_box(width = "100%")
-```
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; "><table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>The first few rows of the joined up dataset</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> oa11 </th>
+   <th style="text-align:right;"> pusenet </th>
+   <th style="text-align:left;"> LSOA11CD </th>
+   <th style="text-align:left;"> LSOA11NM </th>
+   <th style="text-align:left;"> MSOA11CD </th>
+   <th style="text-align:left;"> MSOA11NM </th>
+   <th style="text-align:left;"> LAD11CD </th>
+   <th style="text-align:left;"> LAD11NM </th>
+   <th style="text-align:left;"> RGN11CD </th>
+   <th style="text-align:left;"> RGN11NM </th>
+   <th style="text-align:right;"> people </th>
+   <th style="text-align:left;"> TCITY15CD </th>
+   <th style="text-align:left;"> TCITY15NM </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> E00000001 </td>
+   <td style="text-align:right;"> 0.8292155 </td>
+   <td style="text-align:left;"> E01000001 </td>
+   <td style="text-align:left;"> City of London 001A </td>
+   <td style="text-align:left;"> E02000001 </td>
+   <td style="text-align:left;"> City of London 001 </td>
+   <td style="text-align:left;"> E09000001 </td>
+   <td style="text-align:left;"> City of London </td>
+   <td style="text-align:left;"> E12000007 </td>
+   <td style="text-align:left;"> London </td>
+   <td style="text-align:right;"> 194 </td>
+   <td style="text-align:left;"> J01000055 </td>
+   <td style="text-align:left;"> London </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E00000003 </td>
+   <td style="text-align:right;"> 0.8827383 </td>
+   <td style="text-align:left;"> E01000001 </td>
+   <td style="text-align:left;"> City of London 001A </td>
+   <td style="text-align:left;"> E02000001 </td>
+   <td style="text-align:left;"> City of London 001 </td>
+   <td style="text-align:left;"> E09000001 </td>
+   <td style="text-align:left;"> City of London </td>
+   <td style="text-align:left;"> E12000007 </td>
+   <td style="text-align:left;"> London </td>
+   <td style="text-align:right;"> 250 </td>
+   <td style="text-align:left;"> J01000055 </td>
+   <td style="text-align:left;"> London </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E00000005 </td>
+   <td style="text-align:right;"> 0.9126002 </td>
+   <td style="text-align:left;"> E01000001 </td>
+   <td style="text-align:left;"> City of London 001A </td>
+   <td style="text-align:left;"> E02000001 </td>
+   <td style="text-align:left;"> City of London 001 </td>
+   <td style="text-align:left;"> E09000001 </td>
+   <td style="text-align:left;"> City of London </td>
+   <td style="text-align:left;"> E12000007 </td>
+   <td style="text-align:left;"> London </td>
+   <td style="text-align:right;"> 367 </td>
+   <td style="text-align:left;"> J01000055 </td>
+   <td style="text-align:left;"> London </td>
+  </tr>
+</tbody>
+</table></div>
 </div>
 <br>
-```{r summarising, message=FALSE, warning=FALSE}
+
+```r
 # Summarise internet use to population-weighted average at MSOA level
 # group by MSOA, summing population and internet users, then calculating the % of internet users
 # keep region and cities in for further optional filtering 
@@ -99,11 +159,45 @@ data_msoa <-  data %>%
 ```
 <br>
 <div class="verysmall" align="left">
-```{r show-data2, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
-kable(data_msoa[1:3,], caption = 'The first few rows of the summarised dataset') %>%
-  kable_styling() %>%
-  scroll_box(width = "100%")
-```
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; "><table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>The first few rows of the summarised dataset</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> MSOA11CD </th>
+   <th style="text-align:right;"> t_pop </th>
+   <th style="text-align:right;"> t_int_pop </th>
+   <th style="text-align:right;"> pusenet_msoa </th>
+   <th style="text-align:left;"> RGN11NM </th>
+   <th style="text-align:left;"> TCITY15NM </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> E02000001 </td>
+   <td style="text-align:right;"> 7375 </td>
+   <td style="text-align:right;"> 6672.316 </td>
+   <td style="text-align:right;"> 0.9047207 </td>
+   <td style="text-align:left;"> London </td>
+   <td style="text-align:left;"> London </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E02000002 </td>
+   <td style="text-align:right;"> 6775 </td>
+   <td style="text-align:right;"> 5104.228 </td>
+   <td style="text-align:right;"> 0.7533915 </td>
+   <td style="text-align:left;"> London </td>
+   <td style="text-align:left;"> London </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> E02000003 </td>
+   <td style="text-align:right;"> 10045 </td>
+   <td style="text-align:right;"> 7995.490 </td>
+   <td style="text-align:right;"> 0.7959671 </td>
+   <td style="text-align:left;"> London </td>
+   <td style="text-align:left;"> London </td>
+  </tr>
+</tbody>
+</table></div>
 </div>
 <br>
 Joining data in QGIS is straightforward, made simple for beginners with the GUI. However, multiple joins become very convoluted and SQL knowledge is required for aggregation. It is usually easier to do this sort of joining and summarising in R and read the resulting dataset directly into QGIS. The process and logic is also more transparent this way, and its flexibility means the data can easily be summarised to different levels by just changing a few variable names.   
@@ -113,8 +207,8 @@ The maps have some common design choices: the perceptually uniform [viridis](cra
 <br><br>
 Beyond these, design diverged to make use of the strengths of each tool. In R the powerful ggplot and the flexible dataset are used to provide information about the cities and regions that is hard to interpret from the map. This is achieved to some extent in QGIS by providing a zoomed in view of London. The QGIS GUI makes customising outputs easy and provides endless style options. Such fine-tuning is harder in R, requiring detailed knowledge of Tmap elements, furthermore re-generating the whole map for small adjustments makes instant visual feedback for design tweaks hard.
 <br>
-```{r shapefiles, message=FALSE, warning=FALSE}
 
+```r
 # read in shape files
 msoa_shp <- read_shape('shapes/MSOA/Middle_Layer_Super_Output_Areas_December_2011_Generalised_Clipped_Boundaries_in_England_and_Wales.shp')
 reg_shp  <- read_shape('shapes/regions/Regions_December_2016_Generalised_Clipped_Boundaries_in_England.shp')
@@ -124,7 +218,8 @@ countries_shp <- read_shape('shapes/countries/Countries_December_2017_Generalise
 msoa_shp_all <- msoa_shp %>% inner_join(data_msoa, by= c('msoa11cd'='MSOA11CD'))
 ```
 
-``` {r map, message=FALSE, warning=FALSE}
+
+```r
 # colour palette
 pal <- viridisLite::magma(5, begin = 0.2, end = 1)
 
@@ -170,7 +265,8 @@ add some detail about the survey question
 ** insert link to detailed map
 
 ## Appendix
-```{r message=FALSE, warning=FALSE, paged.print=TRUE}
+
+```r
 # CREATING NEW MAPS IN R WITH THE DATASET IS EASY
 
 # create list of cities we're interested in then create new table filtered by them
@@ -186,8 +282,11 @@ tm_shape(msoa_cities_shp) +
   tm_facets(by='TCITY15NM') + tm_style('gray')
 ```
 
+![](AssessmentPart1_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
 
-```{r message=FALSE, warning=FALSE, paged.print=TRUE}
+
+
+```r
 # GGPLOT CHART FOR R MAP
 
 # summarise internet scores to city level and create new place columns in output table
@@ -222,7 +321,8 @@ cities_chart <- ggplot(place_scores, aes(place_type, pusenet, color=pusenet, lab
 ggsave('place_scores_chart.png', plot=cities_chart, height=7)
 
 cities_chart
-
 ```
+
+![](AssessmentPart1_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
 
 ## References 
