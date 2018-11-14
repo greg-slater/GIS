@@ -109,7 +109,7 @@ kable(data_msoa[1:3,], caption = 'The first few rows of the summarised dataset')
 Joining data in QGIS is straightforward, made simple for beginners with the GUI. However, multiple joins become very convoluted and SQL knowledge is required for aggregation. It is usually easier to do this sort of joining and summarising in R and read the resulting dataset directly into QGIS. The process and logic is also more transparent this way, and its flexibility means the data can easily be summarised to different levels by just changing a few variable names.   
 
 ### Visualisation   
-The maps have some common design choices: the perceptually uniform [viridis](cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) magma colourmap has a wide color range to make differences stand out [@van_der_walt_matplotlib_nodate]; the sequential nature of this colourmap also meets my requirements of highlighting the differences between the extremes of the distribution [@brewer_spectral_1997]; and five jenks breaks portrayed the pattern well (see fig ###).
+The maps have some common design choices: the perceptually uniform [viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) magma colourmap has a wide color range to make differences stand out [@van_der_walt_matplotlib_nodate]; the sequential nature of this colourmap also meets my requirements of highlighting the differences between the extremes of the distribution [@brewer_spectral_1997]; and five jenks breaks portrayed the pattern well (see fig ###).
 <br><br>
 Beyond these, design diverged to make use of the strengths of each tool. In R the powerful ggplot and the flexible dataset are used to provide information about the cities and regions that is hard to interpret from the map. This is achieved to some extent in QGIS by providing a zoomed in view of London. The QGIS GUI makes customising outputs easy and provides endless style options. Such fine-tuning is harder in R, requiring detailed knowledge of Tmap elements, furthermore re-generating the whole map for small adjustments makes instant visual feedback for design tweaks hard.
 <br>
@@ -149,7 +149,10 @@ uk_internet <- tm_shape(msoa_shp_all) + tm_fill(col='pusenet_msoa', palette=pal,
 <!-- [![r map](out_eng_internet_access_edited2.png)](cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) -->
 ![r map](out_eng_internet_access_edited2.png)
 <!-- <br><p class=caption> -->
-Map produced in R, combined with ggplot chart visualisation of scores for regions and cities
+*Map produced in R, combined with ggplot chart visualisation of scores for regions and cities
+Internet use is measured by response to the OxIS question: “Do you, yourself, personally use the Internet on whatever device at home, work, school, college or elsewhere or have you used the Internet anywhere in the past?”*
+[full size image](out_eng_internet_access_edited.png)
+
 <!-- </p><br> -->
 
 
@@ -158,7 +161,9 @@ Map produced in R, combined with ggplot chart visualisation of scores for region
 <!-- [![QGIS map](out_qgis_england_internet_use_cropped2.png)](cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) -->
 ![QGIS map](out_qgis_england_internet_use_cropped2.png)
 <!-- <br><p class=caption> -->
-Map produced in QGIS, with extra detail of London
+*Map produced in QGIS, with extra detail of London
+Internet use is measured by response to the OxIS question: “Do you, yourself, personally use the Internet on whatever device at home, work, school, college or elsewhere or have you used the Internet anywhere in the past?”*
+[full size image](out_qgis_england_internet_use_cropped.png)
 <!-- </p><br> -->
 
 ## Outcome and Implications   
