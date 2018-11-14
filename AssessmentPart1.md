@@ -241,7 +241,8 @@ uk_internet <- tm_shape(msoa_shp_all) + tm_fill(col='pusenet_msoa', palette=pal,
 
 #### R Map
 <br>
-[![r map](out_eng_internet_access_edited2.png)](cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)
+<!-- [![r map](out_eng_internet_access_edited2.png)](cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) -->
+![r map](out_eng_internet_access_edited2.png)]
 <br><p class=caption>
 Map produced in R, combined with ggplot chart visualisation of scores for regions and cities
 </p><br>
@@ -249,7 +250,8 @@ Map produced in R, combined with ggplot chart visualisation of scores for region
 
 #### QGIS Map 
 <br>
-[![QGIS map](out_qgis_england_internet_use_cropped2.png)](cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)
+<!-- [![QGIS map](out_qgis_england_internet_use_cropped2.png)](cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) -->
+![QGIS map](out_qgis_england_internet_use_cropped2.png)]
 <br><p class=caption>
 Map produced in QGIS, with extra detail of London
 </p><br>
