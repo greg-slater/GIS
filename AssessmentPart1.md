@@ -242,10 +242,10 @@ uk_internet <- tm_shape(msoa_shp_all) + tm_fill(col='pusenet_msoa', palette=pal,
 #### R Map
 <!-- <br> -->
 <!-- [![r map](out_eng_internet_access_edited2.png)](cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) -->
-![r map](out_eng_internet_access_edited2.png)
+![r map](out_eng_internet_access_edited2.png){width=700px}    
 <!-- <br><p class=caption> -->
-*Map produced in R, combined with ggplot chart visualisation of scores for regions and cities
-Internet use is measured by response to the OxIS question: “Do you, yourself, personally use the Internet on whatever device at home, work, school, college or elsewhere or have you used the Internet anywhere in the past?”*
+*Map produced in R, combined with ggplot chart visualisation of scores for regions and cities.   
+Internet use is measured by response to the OxIS question: “Do you, yourself, personally use the Internet on whatever device at home, work, school, college or elsewhere or have you used the Internet anywhere in the past?”*   
 [full size image](out_eng_internet_access_edited.png)
 
 <!-- </p><br> -->
@@ -254,22 +254,18 @@ Internet use is measured by response to the OxIS question: “Do you, yourself, 
 #### QGIS Map 
 <!-- <br> -->
 <!-- [![QGIS map](out_qgis_england_internet_use_cropped2.png)](cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) -->
-![QGIS map](out_qgis_england_internet_use_cropped2.png)
+![QGIS map](out_qgis_england_internet_use_cropped2.png){width=500px}    
 <!-- <br><p class=caption> -->
-*Map produced in QGIS, with extra detail of London
-Internet use is measured by response to the OxIS question: “Do you, yourself, personally use the Internet on whatever device at home, work, school, college or elsewhere or have you used the Internet anywhere in the past?”*
+*Map produced in QGIS, with extra detail of London.   
+Internet use is measured by response to the OxIS question: “Do you, yourself, personally use the Internet on whatever device at home, work, school, college or elsewhere or have you used the Internet anywhere in the past?”*   
 [full size image](out_qgis_england_internet_use_cropped.png)
 <!-- </p><br> -->
 
 ## Outcome and Implications   
 As Wood [@fels_rethinking_2010] writes, maps do not ‘reveal’ but ‘propose’; there is no such thing as an absolute reality to represent, or no innocent way to see it, thus we should approach the results of mapping critically. In this instance we should be cautious of the data source; because it is essentially internet use predicted using census variables, we will not see anomalies where internet use diverges from how we expect it to relate to these demographic indicators, which arguably is one of the most interesting outcomes of this sort of exercise. Further caution is advised in interpretation - the strong geographic patterns displayed in the maps make it easy to leap to assumptions of causality, but what has been mapped is not an independent ‘effect’ but one of many factors which can both influence and be influenced by various forms of inequality. 
 <br>
-<br>
+<br>    
 
-
-
-add some detail about the survey question
-** insert link to detailed map
 
 ## Appendix
 
