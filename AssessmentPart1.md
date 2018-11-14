@@ -242,7 +242,7 @@ uk_internet <- tm_shape(msoa_shp_all) + tm_fill(col='pusenet_msoa', palette=pal,
 #### R Map
 <!-- <br> -->
 <!-- [![r map](out_eng_internet_access_edited2.png)](cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) -->
-![r map](out_eng_internet_access_edited2.png){width=700px}    
+![r map](out_eng_internet_access_edited2.png)   
 <!-- <br><p class=caption> -->
 *Map produced in R, combined with ggplot chart visualisation of scores for regions and cities.   
 Internet use is measured by response to the OxIS question: “Do you, yourself, personally use the Internet on whatever device at home, work, school, college or elsewhere or have you used the Internet anywhere in the past?”*   
@@ -254,7 +254,7 @@ Internet use is measured by response to the OxIS question: “Do you, yourself, 
 #### QGIS Map 
 <!-- <br> -->
 <!-- [![QGIS map](out_qgis_england_internet_use_cropped2.png)](cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) -->
-![QGIS map](out_qgis_england_internet_use_cropped2.png){width=500px}    
+![QGIS map](out_qgis_england_internet_use_cropped2.png)  
 <!-- <br><p class=caption> -->
 *Map produced in QGIS, with extra detail of London.   
 Internet use is measured by response to the OxIS question: “Do you, yourself, personally use the Internet on whatever device at home, work, school, college or elsewhere or have you used the Internet anywhere in the past?”*   
